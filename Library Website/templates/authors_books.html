@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Authors & Books</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-container">
+        <div class="header-section">
+            <h2>Authors & Books Report 👥</h2>
+            <a href="/dashboard" class="btn-logout">Back to Dashboard</a>
+        </div>
+
+        <div class="table-card">
+            <h3>All Authors with Book Count (Including 0)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Author Name</th>
+                        <th>Book Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in authors_count %}
+                    <tr>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.book_count }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-card">
+            <h3>Books Where Author and Publisher Share the Same Country</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Book Title</th>
+                        <th>Author (Country)</th>
+                        <th>Publisher (Country)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for sb in same_country_books %}
+                    <tr>
+                        <td>{{ sb.title }}</td>
+                        <td>{{ sb.author_name }} ({{ sb.author_country }})</td>
+                        <td>{{ sb.publisher_name }} ({{ sb.publisher_country }})</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
