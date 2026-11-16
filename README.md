@@ -84,13 +84,13 @@ The project uses a normalized six-table relational database named `library_db`:
 ## 6. Screenshots
 
 ### Dashboard
-![Library dashboard](screenshots/dashboard.png)
+![Library dashboard](Library Website/screenshots/dashboard.png)
 
 ### Advanced Book Search (F2.1)
-![Search page](screenshots/search.png)
+![Search page](Library Website/screenshots/search.png)
 
 ### Library Reports (F2.3)
-![Reports page](screenshots/reports.png)
+![Reports page](Library Website/screenshots/reports.png)
 
 ---
 
