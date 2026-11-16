@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Catalogue</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-container">
+        <div class="header-section">
+            <h2>Complete Book Catalogue 📖</h2>
+            <a href="/dashboard" class="btn-logout">Back to Dashboard</a>
+        </div>
+        <div class="table-card">
+            {% if books %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Price</th>
+                            <th>Year</th>
+                            <th>Author</th>
+                            <th>Publisher</th>
+                            <th>Category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for book in books %}
+                        <tr>
+                            <td>{{ book.title }}</td>
+                            <td>$ {{ book.price }}</td>
+                            <td>{{ book.publish_year }}</td>
+                            <td>{{ book.author_name }}</td>
+                            <td>{{ book.publisher_name }}</td>
+                            <td>{{ book.category_name }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p style="text-align: center; color: #7f8c8d;">No books available in the catalogue.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

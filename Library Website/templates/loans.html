@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Loans Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-container">
+        <div class="header-section">
+            <h2>Loans & Books Reports 📋</h2>
+            <a href="/dashboard" class="btn-logout">Back to Dashboard</a>
+        </div>
+
+        <div class="table-card">
+            <h3>Active Loans (Not Returned Yet)</h3>
+            {% if active_loans %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Loan ID</th>
+                            <th>Book Title</th>
+                            <th>Member Name</th>
+                            <th>Loan Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for loan in active_loans %}
+                        <tr>
+                            <td>{{ loan.loan_id }}</td>
+                            <td>{{ loan.book_title }}</td>
+                            <td>{{ loan.member_name }}</td>
+                            <td>{{ loan.loan_date }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p style="text-align: center; color: #7f8c8d;">No unreturned loans currently.</p>
+            {% endif %}
+        </div>
+
+        <div class="table-card">
+            <h3>Members Who Never Borrowed a Book</h3>
+            <ul>
+                {% for m in inactive_members %}
+                    <li>{{ m.name }} ({{ m.email }})</li>
+                {% else %}
+                    <p style="color: #7f8c8d;">All members have borrowed books.</p>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="table-card">
+            <h3>Books That Were Never Borrowed</h3>
+            <ul>
+                {% for b in unborrowed_books %}
+                    <li>{{ b.title }}</li>
+                {% else %}
+                    <p style="color: #7f8c8d;">All books have been borrowed.</p>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

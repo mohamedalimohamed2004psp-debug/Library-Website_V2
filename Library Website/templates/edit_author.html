@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Author</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="card">
+        <h2>Edit Author ✏️</h2>
+        <form method="POST" action="/edit_author/{{ author.author_id }}">
+            <label>Author Name</label>
+            <input type="text" name="name" value="{{ author.name }}" required>
+
+            <label>Country</label>
+            <input type="text" name="country" value="{{ author.country }}" required>
+
+            <button type="submit">Update Author</button>
+        </form>
+        <div style="margin-top: 20px; text-align: center;">
+            <a href="/dashboard" style="color: #7f8c8d; text-decoration: none; font-size: 14px;">Cancel and Back</a>
+        </div>
+    </div>
+</body>
+</html>

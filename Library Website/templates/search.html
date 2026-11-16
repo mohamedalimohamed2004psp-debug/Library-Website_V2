@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Books</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-container">
+        <div class="header-section">
+            <h2>Advanced Book Search 🔍</h2>
+            <a href="/dashboard" class="btn-logout">Back to Dashboard</a>
+        </div>
+
+        <div class="table-card" style="padding: 20px; margin-bottom: 20px;">
+            <form method="GET" action="/search" style="display: flex; gap: 15px; flex-wrap: wrap; align-items: flex-end;">
+                <div style="flex: 1; min-width: 200px;">
+                    <label>Title Keyword:</label>
+                    <input type="text" name="keyword" value="{{ keyword }}" placeholder="Enter keyword..." style="width: 100%; padding: 10px; border: 1px solid #d1d8e0; border-radius: 6px;">
+                </div>
+                <div style="width: 120px;">
+                    <label>Min Price:</label>
+                    <input type="number" step="0.01" name="min_price" value="{{ min_price }}" style="width: 100%; padding: 10px; border: 1px solid #d1d8e0; border-radius: 6px;">
+                </div>
+                <div style="width: 120px;">
+                    <label>Max Price:</label>
+                    <input type="number" step="0.01" name="max_price" value="{{ max_price }}" style="width: 100%; padding: 10px; border: 1px solid #d1d8e0; border-radius: 6px;">
+                </div>
+                <div style="flex: 1; min-width: 150px;">
+                    <label>Category:</label>
+                    <select name="category_id" style="width: 100%; padding: 11px; border: 1px solid #d1d8e0; border-radius: 6px;">
+                        <option value="">All Categories</option>
+                        {% for cat in categories %}
+                            <option value="{{ cat.category_id }}" {% if selected_category|string == cat.category_id|string %}selected{% endif %}>{{ cat.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <button type="submit" style="background: #3498db; color: white; border: none; padding: 11px 20px; border-radius: 6px; cursor: pointer; font-weight: bold;">Search</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="table-card">
+            <h3>Search Results (Cheapest First)</h3>
+            {% if books %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Price</th>
+                            <th>Year</th>
+                            <th>Author</th>
+                            <th>Publisher</th>
+                            <th>Category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for book in books %}
+                        <tr>
+                            <td>{{ book.title }}</td>
+                            <td>$ {{ book.price }}</td>
+                            <td>{{ book.publish_year }}</td>
+                            <td>{{ book.author_name }}</td>
+                            <td>{{ book.publisher_name }}</td>
+                            <td>{{ book.category_name }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p style="text-align: center; color: #7f8c8d;">No matching books found.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

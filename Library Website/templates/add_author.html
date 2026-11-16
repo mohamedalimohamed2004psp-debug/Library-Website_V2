@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Author</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="card">
+        <h2>Add New Author ✍️</h2>
+        <form method="POST" action="/add_author">
+            <label>Author Name</label>
+            <input type="text" name="name" placeholder="e.g. Naguib Mahfouz" required>
+
+            <label>Country</label>
+            <input type="text" name="country" placeholder="e.g. Egypt" required>
+
+            <button type="submit">Save Author</button>
+        </form>
+        <div style="margin-top: 20px; text-align: center;">
+            <a href="/dashboard" style="color: #7f8c8d; text-decoration: none; font-size: 14px;">Back to Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Most Borrowed</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-container">
+        <div class="header-section">
+            <h2>Most Borrowed Books & Members 🏆</h2>
+            <a href="/dashboard" class="btn-logout">Back to Dashboard</a>
+        </div>
+
+        <div class="table-card">
+            <h3>Top 3 Most Borrowed Books</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Book Title</th>
+                        <th>Loan Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in top_books %}
+                    <tr>
+                        <td>{{ book.title }}</td>
+                        <td>{{ book.loan_count }} times</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-card">
+            <h3>Member with the Most Loans</h3>
+            {% if top_member %}
+                <p><strong>Name:</strong> {{ top_member.name }}</p>
+                <p><strong>Total Loans:</strong> {{ top_member.loan_count }} loans</p>
+            {% else %}
+                <p style="color: #7f8c8d;">Not enough loan data available.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
